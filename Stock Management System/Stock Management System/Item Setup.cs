@@ -160,5 +160,7 @@ namespace Stock_Management_System
                 MessageBox.Show(exception.Message);
             }
         }
+
+       
     }
 }

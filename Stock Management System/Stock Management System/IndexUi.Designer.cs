@@ -90,6 +90,7 @@
             this.linkLabel10.TabIndex = 9;
             this.linkLabel10.TabStop = true;
             this.linkLabel10.Text = "Stock In";
+            this.linkLabel10.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel10_LinkClicked);
             // 
             // linkLabel12
             // 

@@ -37,5 +37,12 @@ namespace Stock_Management_System
             item_Setup.Show();
             this.Hide();
         }
+
+        private void LinkLabel10_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            StockIn stockIn = new StockIn();
+            stockIn.Show();
+            this.Hide();
+        }
     }
 }

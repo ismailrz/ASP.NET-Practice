@@ -150,7 +150,7 @@
             this.categoryComboBox.Size = new System.Drawing.Size(216, 32);
             this.categoryComboBox.TabIndex = 9;
             this.categoryComboBox.ValueMember = "Serial";
-            // 
+           // 
             // categoryModelBindingSource
             // 
             this.categoryModelBindingSource.DataSource = typeof(Stock_Management_System.Models.CategoryModel);
