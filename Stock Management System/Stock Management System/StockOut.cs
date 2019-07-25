@@ -225,7 +225,7 @@ namespace Stock_Management_System
                 //
                 if (count > 0)
                 {
-                    int quantity = (Convert.ToInt32(datatable.Rows[0]["Quantity"].ToString()) - Convert.ToInt32(ReorderLevelTextBox.Text.ToString()));
+                    int quantity = (Convert.ToInt32(datatable.Rows[0]["AvailableQuantity"].ToString()) - Convert.ToInt32(ReorderLevelTextBox.Text.ToString()));
                     if (quantity > -1)
                     {
                         AvailableQuantityTextBox.Text = quantity.ToString();
@@ -308,7 +308,7 @@ namespace Stock_Management_System
                 {
 
                     int quantityOut = Convert.ToInt32(datatable.Rows[0]["QuantityOut"].ToString()) + Convert.ToInt32(StockOutQuantityTextBox.Text);
-                    int quantityIn = Convert.ToInt32(datatable2.Rows[0]["Quantity"].ToString()) - Convert.ToInt32(StockOutQuantityTextBox.Text);
+                    int quantityIn = Convert.ToInt32(datatable2.Rows[0]["AvailableQuantity"].ToString()) - Convert.ToInt32(StockOutQuantityTextBox.Text);
 
                     // commandString for StockOut
                     string commandString = "Update StockOut Set QuantityOut = " + quantityOut + " Where CategoryName = '" + CategoryComboBox.Text + "' and CompanyName = '" + CompanyComboBox.Text + "' and ItemName = '" + ItemComboBox.Text + "'";
@@ -320,7 +320,7 @@ namespace Stock_Management_System
                     count = sqlCommand.ExecuteNonQuery();
 
                     // stock In table update
-                    string commandString2 = "Update StockIn Set Quantity = " + quantityIn + " Where CategoryName = '" + CategoryComboBox.Text + "' and CompanyName = '" + CompanyComboBox.Text + "' and ItemName = '" + ItemComboBox.Text + "'";
+                    string commandString2 = "Update StockIn Set AvailableQuantity = " + quantityIn + " Where CategoryName = '" + CategoryComboBox.Text + "' and CompanyName = '" + CompanyComboBox.Text + "' and ItemName = '" + ItemComboBox.Text + "'";
                     SqlCommand sqlCommand2 = new SqlCommand();
                     sqlCommand2.CommandText = commandString2;
                     sqlCommand2.Connection = sqlConnection;
@@ -337,7 +337,7 @@ namespace Stock_Management_System
                 }
                 else
                 {
-                    int quantityIn = Convert.ToInt32(datatable2.Rows[0]["Quantity"].ToString()) - Convert.ToInt32(StockOutQuantityTextBox.Text);
+                    int quantityIn = Convert.ToInt32(datatable2.Rows[0]["AvailableQuantity"].ToString()) - Convert.ToInt32(StockOutQuantityTextBox.Text);
 
                     // commandString for insert Category in Database
                     string commandString = "insert into StockOut Values('" + CategoryComboBox.Text + "','" + CompanyComboBox.Text + "','" + ItemComboBox.Text + "'," + StockOutQuantityTextBox.Text + ",GETDATE())";
@@ -348,7 +348,7 @@ namespace Stock_Management_System
                     int count = 0;
                     count = sqlCommand.ExecuteNonQuery();
                     // stock In table update
-                    string commandString2 = "Update StockIn Set Quantity = " + quantityIn + " Where CategoryName = '" + CategoryComboBox.Text + "' and CompanyName = '" + CompanyComboBox.Text + "' and ItemName = '" + ItemComboBox.Text + "'";
+                    string commandString2 = "Update StockIn Set AvailableQuantity = " + quantityIn + " Where CategoryName = '" + CategoryComboBox.Text + "' and CompanyName = '" + CompanyComboBox.Text + "' and ItemName = '" + ItemComboBox.Text + "'";
                     SqlCommand sqlCommand2 = new SqlCommand();
                     sqlCommand2.CommandText = commandString2;
                     sqlCommand2.Connection = sqlConnection;

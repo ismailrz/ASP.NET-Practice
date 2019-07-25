@@ -16,30 +16,11 @@ namespace Stock_Management_System
         public Company_Setup()
         {
             InitializeComponent();
-            try
-            {
-                //connectionString
-                string connectionString = @"Server =DESKTOP-3K97P4H\SQLEXPRESS; Database =StockManagementSystem; Integrated Security = true";
-                SqlConnection sqlConnection = new SqlConnection();
-                sqlConnection.ConnectionString = connectionString;
-                sqlConnection.Open();
+
+            //company functoin call
+            LoadToCompanyFunction();
 
 
-                //commandSting for Existing Category Checked
-                string commandStringFind = "Select * from  Company";
-                SqlDataAdapter adapter = new SqlDataAdapter(commandStringFind, sqlConnection);
-                DataTable datatable = new DataTable();
-                adapter.Fill(datatable);
-
-                companyDataGridView.DataSource = datatable;
-
-
-                sqlConnection.Close();
-            }
-            catch (Exception exception)
-            {
-                MessageBox.Show(exception.Message);
-            }
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
@@ -100,13 +81,36 @@ namespace Stock_Management_System
                 MessageBox.Show(exception.Message);
             }
 
+            // Company function category 
+            LoadToCompanyFunction();
         }
 
-        private void RefreshButton_Click(object sender, EventArgs e)
+        private void LoadToCompanyFunction()
         {
-            Company_Setup company_Setup = new Company_Setup();
-            company_Setup.Show();
-            this.Hide();
+            try
+            {
+                //connectionString
+                string connectionString = @"Server =DESKTOP-3K97P4H\SQLEXPRESS; Database =StockManagementSystem; Integrated Security = true";
+                SqlConnection sqlConnection = new SqlConnection();
+                sqlConnection.ConnectionString = connectionString;
+                sqlConnection.Open();
+
+
+                //commandSting for Existing Category Checked
+                string commandStringFind = "Select * from  Company";
+                SqlDataAdapter adapter = new SqlDataAdapter(commandStringFind, sqlConnection);
+                DataTable datatable = new DataTable();
+                adapter.Fill(datatable);
+
+                companyDataGridView.DataSource = datatable;
+
+
+                sqlConnection.Close();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
         }
 
         private void CompanyDataGridView_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)

@@ -16,30 +16,9 @@ namespace Stock_Management_System
         public Category_Setup()
         {
             InitializeComponent();
-            try
-            {
-                //connectionString
-                string connectionString = @"Server =DESKTOP-3K97P4H\SQLEXPRESS; Database =StockManagementSystem; Integrated Security = true";
-                SqlConnection sqlConnection = new SqlConnection();
-                sqlConnection.ConnectionString = connectionString;
-                sqlConnection.Open();
 
-
-                //commandSting for Existing Category Checked
-                string commandStringFind = "Select * from  Category";
-                SqlDataAdapter adapter = new SqlDataAdapter(commandStringFind, sqlConnection);
-                DataTable datatable = new DataTable();
-                adapter.Fill(datatable);
-
-                categoryDataGridView.DataSource = datatable;
-
-
-                sqlConnection.Close();
-            }
-            catch (Exception exception)
-            {
-                MessageBox.Show(exception.Message);
-            }
+            // Category Functon Call
+            LoadToCategoryFunction();
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
@@ -100,13 +79,37 @@ namespace Stock_Management_System
                 MessageBox.Show(exception.Message);
             }
 
+            // Category Function call
+            LoadToCategoryFunction();
+
         }
 
-        private void RefreshButton_Click(object sender, EventArgs e)
+        private void LoadToCategoryFunction()
         {
-            Category_Setup category_Setup = new Category_Setup();
-            category_Setup.Show();
-            this.Hide();
+            try
+            {
+                //connectionString
+                string connectionString = @"Server =DESKTOP-3K97P4H\SQLEXPRESS; Database =StockManagementSystem; Integrated Security = true";
+                SqlConnection sqlConnection = new SqlConnection();
+                sqlConnection.ConnectionString = connectionString;
+                sqlConnection.Open();
+
+
+                //commandSting for Existing Category Checked
+                string commandStringFind = "Select * from  Category";
+                SqlDataAdapter adapter = new SqlDataAdapter(commandStringFind, sqlConnection);
+                DataTable datatable = new DataTable();
+                adapter.Fill(datatable);
+
+                categoryDataGridView.DataSource = datatable;
+
+
+                sqlConnection.Close();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
         }
 
         private void CategoryDataGridView_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)

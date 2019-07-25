@@ -230,7 +230,7 @@ namespace Stock_Management_System
                 //
                 if (count >0 )
                 {
-                    int quantity = (Convert.ToInt32(datatable.Rows[0]["Quantity"].ToString()) - Convert.ToInt32(ReorderLevelTextBox.Text.ToString()));
+                    int quantity = (Convert.ToInt32(datatable.Rows[0]["AvailableQuantity"].ToString()) - Convert.ToInt32(ReorderLevelTextBox.Text.ToString()));
                     if(quantity >-1)
                     {
                         AvailableQuantityTextBox.Text = quantity.ToString();
@@ -316,9 +316,9 @@ namespace Stock_Management_System
                 if (datatable.Rows.Count > 0)
                 {
 
-                    int quantity =Convert.ToInt32(StockInQuantityTextBox.Text) +Convert.ToInt32(datatable.Rows[0]["Quantity"].ToString());
+                    int quantity =Convert.ToInt32(StockInQuantityTextBox.Text) +Convert.ToInt32(datatable.Rows[0]["AvailableQuantity"].ToString());
                     // commandString for insert Category in Database
-                    string commandString = "Update StockIn Set Quantity = "+quantity+" Where CategoryName = '" + CategoryComboBox.Text + "' and CompanyName = '" + CompanyComboBox.Text + "' and ItemName = '" + ItemComboBox.Text + "'";
+                    string commandString = "Update StockIn Set AvailableQuantity = " + quantity+" Where CategoryName = '" + CategoryComboBox.Text + "' and CompanyName = '" + CompanyComboBox.Text + "' and ItemName = '" + ItemComboBox.Text + "'";
                     SqlCommand sqlCommand = new SqlCommand();
                     sqlCommand.CommandText = commandString;
                     sqlCommand.Connection = sqlConnection;
@@ -337,7 +337,7 @@ namespace Stock_Management_System
                 }
                 else {
                     // commandString for insert Category in Database
-                    string commandString = "insert into StockIn Values('" + CategoryComboBox.Text + "','" + CompanyComboBox.Text + "','" + ItemComboBox.Text + "'," + StockInQuantityTextBox.Text + ",GETDATE())";
+                    string commandString = "insert into StockIn Values('" + CategoryComboBox.Text + "','" + CompanyComboBox.Text + "','" + ItemComboBox.Text + "'," + StockInQuantityTextBox.Text + "," + ReorderLevelTextBox.Text + ",GETDATE())";
                     SqlCommand sqlCommand = new SqlCommand();
                     sqlCommand.CommandText = commandString;
                     sqlCommand.Connection = sqlConnection;

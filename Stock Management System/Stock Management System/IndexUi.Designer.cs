@@ -112,6 +112,7 @@
             this.linkLabel14.TabIndex = 13;
             this.linkLabel14.TabStop = true;
             this.linkLabel14.Text = "Search & View Items Summary";
+            this.linkLabel14.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel14_LinkClicked);
             // 
             // linkLabel16
             // 

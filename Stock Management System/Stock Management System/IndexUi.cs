@@ -51,5 +51,12 @@ namespace Stock_Management_System
             stockOut.Show();
             this.Hide();
         }
+
+        private void LinkLabel14_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Search_and_View_Items_Summary search_And_View_Items_Summary = new Search_and_View_Items_Summary();
+            search_And_View_Items_Summary.Show();
+            this.Hide();
+        }
     }
 }

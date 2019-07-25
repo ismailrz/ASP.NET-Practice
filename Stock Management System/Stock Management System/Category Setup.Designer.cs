@@ -36,7 +36,6 @@
             this.serialDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.categoryNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.categoryModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.refreshButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.categoryDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.categoryModelBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -98,22 +97,11 @@
             // 
             this.categoryModelBindingSource.DataSource = typeof(Stock_Management_System.Models.CategoryModel);
             // 
-            // refreshButton
-            // 
-            this.refreshButton.Location = new System.Drawing.Point(147, 132);
-            this.refreshButton.Name = "refreshButton";
-            this.refreshButton.Size = new System.Drawing.Size(136, 35);
-            this.refreshButton.TabIndex = 4;
-            this.refreshButton.Text = "Refresh";
-            this.refreshButton.UseVisualStyleBackColor = true;
-            this.refreshButton.Click += new System.EventHandler(this.RefreshButton_Click);
-            // 
             // Category_Setup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1370, 749);
-            this.Controls.Add(this.refreshButton);
             this.Controls.Add(this.categoryDataGridView);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.categoryTextBox);
@@ -138,6 +126,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn serialDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn categoryNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource categoryModelBindingSource;
-        private System.Windows.Forms.Button refreshButton;
     }
 }

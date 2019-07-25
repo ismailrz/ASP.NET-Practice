@@ -30,28 +30,16 @@
         {
             this.components = new System.ComponentModel.Container();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.refreshButton = new System.Windows.Forms.Button();
             this.companyDataGridView = new System.Windows.Forms.DataGridView();
-            this.serialDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.companyNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.companyModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.SaveButton = new System.Windows.Forms.Button();
             this.companyTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.serialDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.companyNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.companyModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.companyDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.companyModelBindingSource)).BeginInit();
             this.SuspendLayout();
-            // 
-            // refreshButton
-            // 
-            this.refreshButton.Location = new System.Drawing.Point(80, 107);
-            this.refreshButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.refreshButton.Name = "refreshButton";
-            this.refreshButton.Size = new System.Drawing.Size(112, 29);
-            this.refreshButton.TabIndex = 9;
-            this.refreshButton.Text = "Refresh";
-            this.refreshButton.UseVisualStyleBackColor = true;
-            this.refreshButton.Click += new System.EventHandler(this.RefreshButton_Click);
             // 
             // companyDataGridView
             // 
@@ -68,22 +56,6 @@
             this.companyDataGridView.Size = new System.Drawing.Size(724, 179);
             this.companyDataGridView.TabIndex = 8;
             this.companyDataGridView.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CompanyDataGridView_CellContentDoubleClick);
-            // 
-            // serialDataGridViewTextBoxColumn
-            // 
-            this.serialDataGridViewTextBoxColumn.DataPropertyName = "Serial";
-            this.serialDataGridViewTextBoxColumn.HeaderText = "Serial";
-            this.serialDataGridViewTextBoxColumn.Name = "serialDataGridViewTextBoxColumn";
-            // 
-            // companyNameDataGridViewTextBoxColumn
-            // 
-            this.companyNameDataGridViewTextBoxColumn.DataPropertyName = "CompanyName";
-            this.companyNameDataGridViewTextBoxColumn.HeaderText = "CompanyName";
-            this.companyNameDataGridViewTextBoxColumn.Name = "companyNameDataGridViewTextBoxColumn";
-            // 
-            // companyModelBindingSource
-            // 
-            this.companyModelBindingSource.DataSource = typeof(Stock_Management_System.Models.CompanyModel);
             // 
             // SaveButton
             // 
@@ -114,12 +86,27 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "Company Name";
             // 
+            // serialDataGridViewTextBoxColumn
+            // 
+            this.serialDataGridViewTextBoxColumn.DataPropertyName = "Serial";
+            this.serialDataGridViewTextBoxColumn.HeaderText = "Serial";
+            this.serialDataGridViewTextBoxColumn.Name = "serialDataGridViewTextBoxColumn";
+            // 
+            // companyNameDataGridViewTextBoxColumn
+            // 
+            this.companyNameDataGridViewTextBoxColumn.DataPropertyName = "CompanyName";
+            this.companyNameDataGridViewTextBoxColumn.HeaderText = "CompanyName";
+            this.companyNameDataGridViewTextBoxColumn.Name = "companyNameDataGridViewTextBoxColumn";
+            // 
+            // companyModelBindingSource
+            // 
+            this.companyModelBindingSource.DataSource = typeof(Stock_Management_System.Models.CompanyModel);
+            // 
             // Company_Setup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1200, 692);
-            this.Controls.Add(this.refreshButton);
             this.Controls.Add(this.companyDataGridView);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.companyTextBox);
@@ -137,7 +124,6 @@
 
         #endregion
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private System.Windows.Forms.Button refreshButton;
         private System.Windows.Forms.DataGridView companyDataGridView;
         private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.TextBox companyTextBox;

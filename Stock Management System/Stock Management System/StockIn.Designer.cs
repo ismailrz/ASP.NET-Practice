@@ -51,7 +51,7 @@
             this.categoryNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.companyNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.itemNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.quantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.availableQuantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dTDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.categoryModelBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DisplayDataGridView)).BeginInit();
@@ -113,7 +113,7 @@
             this.categoryNameDataGridViewTextBoxColumn,
             this.companyNameDataGridViewTextBoxColumn,
             this.itemNameDataGridViewTextBoxColumn,
-            this.quantityDataGridViewTextBoxColumn,
+            this.availableQuantityDataGridViewTextBoxColumn,
             this.dTDataGridViewTextBoxColumn});
             this.DisplayDataGridView.DataSource = this.stockInModelBindingSource;
             this.DisplayDataGridView.Location = new System.Drawing.Point(45, 317);
@@ -243,11 +243,11 @@
             this.itemNameDataGridViewTextBoxColumn.HeaderText = "ItemName";
             this.itemNameDataGridViewTextBoxColumn.Name = "itemNameDataGridViewTextBoxColumn";
             // 
-            // quantityDataGridViewTextBoxColumn
+            // availableQuantityDataGridViewTextBoxColumn
             // 
-            this.quantityDataGridViewTextBoxColumn.DataPropertyName = "Quantity";
-            this.quantityDataGridViewTextBoxColumn.HeaderText = "Quantity";
-            this.quantityDataGridViewTextBoxColumn.Name = "quantityDataGridViewTextBoxColumn";
+            this.availableQuantityDataGridViewTextBoxColumn.DataPropertyName = "AvailableQuantity";
+            this.availableQuantityDataGridViewTextBoxColumn.HeaderText = "AvailableQuantity";
+            this.availableQuantityDataGridViewTextBoxColumn.Name = "availableQuantityDataGridViewTextBoxColumn";
             // 
             // dTDataGridViewTextBoxColumn
             // 
@@ -306,11 +306,12 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.BindingSource itemModelBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn quantityDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn serialDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn categoryNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn companyNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn itemNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn quantityDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn availableQuantityDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dTDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource stockInModelBindingSource;
     }

@@ -12,7 +12,7 @@ namespace Stock_Management_System.Models
         public string CategoryName { set; get; }
         public string CompanyName { set; get; }
         public string ItemName { set; get; }
-        public int Quantity { set; get; }
+        public int AvailableQuantity { set; get; }
         public string DT { set; get; }
     }
 }
