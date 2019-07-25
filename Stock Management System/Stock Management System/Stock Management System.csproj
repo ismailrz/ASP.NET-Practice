@@ -73,6 +73,7 @@
     <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Models\CompanyModel.cs" />
     <Compile Include="Models\itemModel.cs" />
+    <Compile Include="Models\StockOutModel.cs" />
     <Compile Include="Models\StockInModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -81,6 +82,12 @@
     </Compile>
     <Compile Include="StockIn.Designer.cs">
       <DependentUpon>StockIn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StockOut.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StockOut.Designer.cs">
+      <DependentUpon>StockOut.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Category Setup.resx">
       <DependentUpon>Category Setup.cs</DependentUpon>
@@ -106,10 +113,14 @@
     <EmbeddedResource Include="StockIn.resx">
       <DependentUpon>StockIn.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="StockOut.resx">
+      <DependentUpon>StockOut.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\DataSources\Stock_Management_System.Models.CategoryModel.datasource" />
     <None Include="Properties\DataSources\Stock_Management_System.Models.CompanyModel.datasource" />
     <None Include="Properties\DataSources\Stock_Management_System.Models.itemModel.datasource" />
     <None Include="Properties\DataSources\Stock_Management_System.Models.StockInModel.datasource" />
+    <None Include="Properties\DataSources\Stock_Management_System.Models.StockOutModel.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

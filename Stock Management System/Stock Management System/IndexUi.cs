@@ -44,5 +44,12 @@ namespace Stock_Management_System
             stockIn.Show();
             this.Hide();
         }
+
+        private void LinkLabel12_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            StockOut stockOut = new StockOut();
+            stockOut.Show();
+            this.Hide();
+        }
     }
 }

@@ -101,6 +101,7 @@
             this.linkLabel12.TabIndex = 11;
             this.linkLabel12.TabStop = true;
             this.linkLabel12.Text = "Stock Out";
+            this.linkLabel12.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel12_LinkClicked);
             // 
             // linkLabel14
             // 
