@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Stock_Management_System.BLL;
+using Stock_Management_System.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -13,10 +13,14 @@ namespace Stock_Management_System
 {
     public partial class Category_Setup : Form
     {
+        CategoryManager _categoryManager;
+        CategoryModel category;
         public Category_Setup()
         {
             InitializeComponent();
-
+            _categoryManager = new CategoryManager();
+            category = new CategoryModel();
+            
             // Category Functon Call
             LoadToCategoryFunction();
         }
@@ -31,48 +35,17 @@ namespace Stock_Management_System
 
             try
             {
-                //connectionString
-                string connectionString = @"Server =DESKTOP-3K97P4H\SQLEXPRESS; Database =StockManagementSystem; Integrated Security = true";
-                SqlConnection sqlConnection = new SqlConnection();
-                sqlConnection.ConnectionString = connectionString;
-                sqlConnection.Open();
+                category.CategoryName = categoryTextBox.Text;
 
-
-                //commandSting for Existing Category Checked
-                string commandStringFind = "Select * from  Category where CategoryName = ('" + categoryTextBox.Text + "')";
-                SqlDataAdapter adapter = new SqlDataAdapter(commandStringFind, sqlConnection);
-                DataTable datatable = new DataTable();
-                adapter.Fill(datatable);
-
-                if (datatable.Rows.Count > 0)
+                if (!_categoryManager.IsCategoryUnique(category))
                 {
-                    MessageBox.Show("Category " + categoryTextBox.Text + "  already Exist!!");
+                    MessageBox.Show("This category is Duplicated !!");
                     return;
                 }
                 else
                 {
-                    // commandString for insert Category in Database
-                    string commandString = "insert into Category Values('" + categoryTextBox.Text + "')";
-                    SqlCommand sqlCommand = new SqlCommand();
-                    sqlCommand.CommandText = commandString;
-                    sqlCommand.Connection = sqlConnection;
-
-                    int count = 0;
-                    count = sqlCommand.ExecuteNonQuery();
-
-                    if (count > 0)
-                    {
-                        MessageBox.Show("Category Insert Successfully !!");
-                    }
-                    else
-                    {
-                        MessageBox.Show(" Insert Failed \n Try Again");
-                    }
-
-                }
-
-
-                sqlConnection.Close();
+                    MessageBox.Show(_categoryManager.InsertCategory(category));
+                }   
             }
             catch (Exception exception)
             {
@@ -81,35 +54,11 @@ namespace Stock_Management_System
 
             // Category Function call
             LoadToCategoryFunction();
-
         }
 
         private void LoadToCategoryFunction()
         {
-            try
-            {
-                //connectionString
-                string connectionString = @"Server =DESKTOP-3K97P4H\SQLEXPRESS; Database =StockManagementSystem; Integrated Security = true";
-                SqlConnection sqlConnection = new SqlConnection();
-                sqlConnection.ConnectionString = connectionString;
-                sqlConnection.Open();
-
-
-                //commandSting for Existing Category Checked
-                string commandStringFind = "Select * from  Category";
-                SqlDataAdapter adapter = new SqlDataAdapter(commandStringFind, sqlConnection);
-                DataTable datatable = new DataTable();
-                adapter.Fill(datatable);
-
-                categoryDataGridView.DataSource = datatable;
-
-
-                sqlConnection.Close();
-            }
-            catch (Exception exception)
-            {
-                MessageBox.Show(exception.Message);
-            }
+            categoryDataGridView.DataSource= _categoryManager.LoadCategoryToComboBox();
         }
 
         private void CategoryDataGridView_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)

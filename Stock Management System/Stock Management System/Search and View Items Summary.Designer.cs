@@ -133,7 +133,7 @@
             // 
             // itemModelBindingSource
             // 
-            this.itemModelBindingSource.DataSource = typeof(Stock_Management_System.Models.itemModel);
+            this.itemModelBindingSource.DataSource = typeof(Stock_Management_System.Models.ItemModel);
             // 
             // serialDataGridViewTextBoxColumn
             // 

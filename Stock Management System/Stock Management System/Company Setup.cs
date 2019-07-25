@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Stock_Management_System.BLL;
+using Stock_Management_System.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,105 +15,41 @@ namespace Stock_Management_System
 {
     public partial class Company_Setup : Form
     {
+        CompanyManager _companyManager;
+        CompanyModel company;
+
+      
         public Company_Setup()
         {
             InitializeComponent();
 
-            //company functoin call
-            LoadToCompanyFunction();
 
+            _companyManager = new CompanyManager();
+            company = new CompanyModel();
+            //company DataGridView  functoin call
+            companyDataGridView.DataSource = _companyManager.LoadToCompanyFunction();
 
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
+            company.CompanyName = companyTextBox.Text;
+
             if (String.IsNullOrEmpty(companyTextBox.Text))
             {
                 MessageBox.Show("Enter a Company Name");
                 return;
             }
 
-            try
-            {
-                //connectionString
-                string connectionString = @"Server =DESKTOP-3K97P4H\SQLEXPRESS; Database =StockManagementSystem; Integrated Security = true";
-                SqlConnection sqlConnection = new SqlConnection();
-                sqlConnection.ConnectionString = connectionString;
-                sqlConnection.Open();
+            // function call 
+           MessageBox.Show( _companyManager.IsExistOrInsert(company));
 
-
-                //commandSting for Existing Category Checked
-                string commandStringFind = "Select * from  Company where CompanyName = ('" + companyTextBox.Text + "')";
-                SqlDataAdapter adapter = new SqlDataAdapter(commandStringFind, sqlConnection);
-                DataTable datatable = new DataTable();
-                adapter.Fill(datatable);
-
-                if (datatable.Rows.Count > 0)
-                {
-                    MessageBox.Show("Company " + companyTextBox.Text + "  already Exist!!");
-                    return;
-                }
-                else
-                {
-                    // commandString for insert Category in Database
-                    string commandString = "insert into Company Values('" + companyTextBox.Text + "')";
-                    SqlCommand sqlCommand = new SqlCommand();
-                    sqlCommand.CommandText = commandString;
-                    sqlCommand.Connection = sqlConnection;
-
-                    int count = 0;
-                    count = sqlCommand.ExecuteNonQuery();
-
-                    if (count > 0)
-                    {
-                        MessageBox.Show("Company Insert Successfully !!");
-                    }
-                    else
-                    {
-                        MessageBox.Show(" Insert Failed \n Try Again");
-                    }
-
-                }
-
-
-                sqlConnection.Close();
-            }
-            catch (Exception exception)
-            {
-                MessageBox.Show(exception.Message);
-            }
-
-            // Company function category 
-            LoadToCompanyFunction();
+            // Company DataGridView function call 
+           
+           companyDataGridView.DataSource = _companyManager.LoadToCompanyFunction();
         }
 
-        private void LoadToCompanyFunction()
-        {
-            try
-            {
-                //connectionString
-                string connectionString = @"Server =DESKTOP-3K97P4H\SQLEXPRESS; Database =StockManagementSystem; Integrated Security = true";
-                SqlConnection sqlConnection = new SqlConnection();
-                sqlConnection.ConnectionString = connectionString;
-                sqlConnection.Open();
-
-
-                //commandSting for Existing Category Checked
-                string commandStringFind = "Select * from  Company";
-                SqlDataAdapter adapter = new SqlDataAdapter(commandStringFind, sqlConnection);
-                DataTable datatable = new DataTable();
-                adapter.Fill(datatable);
-
-                companyDataGridView.DataSource = datatable;
-
-
-                sqlConnection.Close();
-            }
-            catch (Exception exception)
-            {
-                MessageBox.Show(exception.Message);
-            }
-        }
+        
 
         private void CompanyDataGridView_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {

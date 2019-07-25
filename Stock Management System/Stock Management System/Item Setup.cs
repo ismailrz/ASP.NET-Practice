@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Stock_Management_System.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -110,6 +111,12 @@ namespace Stock_Management_System
                 MessageBox.Show(" Reorder cannot empty !!");
                 return;
             }
+            ItemModel itemModel;
+            itemModel = new ItemModel();
+            itemModel.CompanyName = companyComboBox.Text;
+            itemModel.CategoryName = categoryComboBox.Text;
+            itemModel.ItemName = itemTextBox.Text;
+            itemModel.ReorderLevel = Convert.ToInt32(ReorderLevelTextBox.Text);
             try
             {
                 //connectionString
@@ -119,7 +126,7 @@ namespace Stock_Management_System
                 sqlConnection.Open();
 
                 //commandSting for Existing Category Checked
-                string commandStringFind = "Select * from  Items where CategoryName = ('" + categoryComboBox.Text + "') AND CompanyName = ('" + companyComboBox.Text + "') AND ItemName = ('" + itemTextBox.Text + "') ";
+                string commandStringFind = "Select * from  Items where CategoryName = ('" + itemModel.CategoryName + "') AND CompanyName = ('" + itemModel.CompanyName + "') AND ItemName = ('" + itemModel.ItemName + "') ";
                 SqlDataAdapter adapter = new SqlDataAdapter(commandStringFind, sqlConnection);
                 DataTable datatable = new DataTable();
                 adapter.Fill(datatable);

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Stock_Management_System.Models
 {
-    class itemModel
+    class ItemModel
     {
         public int Serial { set; get; }
     
