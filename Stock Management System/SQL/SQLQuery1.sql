@@ -68,3 +68,19 @@ Delete  from StockOut;
 
 
 Drop Table StockIn;
+
+create Table Students(
+ID int,
+StudentNames Varchar(30),
+Departments Varchar(20),
+Gender Varchar(20),
+M0bile Varchar(15)
+);
+
+
+Insert into Students  Values (1,'Ismail','CSE','Male','01743557172')
+
+
+Select * from Students
+
+create database MindforkDB

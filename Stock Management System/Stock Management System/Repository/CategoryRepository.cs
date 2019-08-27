@@ -19,7 +19,7 @@ namespace Stock_Management_System.Repository
         DataTable datatable;
         public CategoryRepository()
         {
-            connectionString = @"Server =DESKTOP-3K97P4H; Database =StockManagementSystem; Integrated Security = true";
+            connectionString = @"Server =DESKTOP-3K97P4H\SQLEXPRESS; Database =StockManagementSystem; Integrated Security = true";
             sqlConnection = new SqlConnection(connectionString);
         }
         public bool IsCategoryUnique(CategoryModel category)

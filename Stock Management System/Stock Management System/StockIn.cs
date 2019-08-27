@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Stock_Management_System.BLL;
+using Stock_Management_System.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,19 +15,31 @@ namespace Stock_Management_System
 {
     public partial class StockIn : Form
     {
+        ItemModel itemModel;
+        StockInManager _StockInManager, _StockInManager2, _StockInManager3, _StockInManager4, _StockInManager5;
         public StockIn()
         {
             InitializeComponent();
+            _StockInManager = new StockInManager();
+            _StockInManager2 = new StockInManager();
+            _StockInManager3 = new StockInManager();
+            _StockInManager4 = new StockInManager();
+            _StockInManager5 = new StockInManager();
 
+            itemModel = new ItemModel();
         }
 
         private void StockIn_Load(object sender, EventArgs e)
         {
             LoadToDisplayDataGridViewFunction();
-            LoadToCategoryComboBox();
-            LoadToCompanyComboBox();
-            LoadToItemComboBox();
-            ReorderLevelTextBoxFunction();
+            CategoryComboBox.DataSource= _StockInManager.LoadToCategoryComboBox();
+           CompanyComboBox.DataSource =  _StockInManager2.LoadToCompanyComboBox();
+            ItemComboBox.DataSource = _StockInManager3.LoadToItemSetupComboBox();
+
+            itemModel.CategoryName = CategoryComboBox.Text;
+            itemModel.CompanyName = CompanyComboBox.Text;
+            itemModel.ItemName = ItemComboBox.Text;
+            ReorderLevelTextBox.Text =_StockInManager4.ReorderLevelTextBoxFunction(itemModel);
             AvailableQuantityFunction();
 
         }
@@ -61,150 +75,14 @@ namespace Stock_Management_System
                 MessageBox.Show(exception.Message);
             }
         }
-        private void LoadToCategoryComboBox()
-        {
-            try
-            {
-                //connectionString
-                string connectionString = @"Server =DESKTOP-3K97P4H\SQLEXPRESS; Database =StockManagementSystem; Integrated Security = true";
-                SqlConnection sqlConnection = new SqlConnection();
-                sqlConnection.ConnectionString = connectionString;
-
-                string commandString = "Select * from  Category";
-                SqlCommand sqlCommand = new SqlCommand();
-                sqlCommand.CommandText = commandString;
-                sqlCommand.Connection = sqlConnection;
-                sqlConnection.Open();
-
-
-                //commandSting for Existing Category Checked
-
-
-                SqlDataAdapter adapter = new SqlDataAdapter(sqlCommand);
-                DataTable datatable = new DataTable();
-                adapter.Fill(datatable);
-                //
-                CategoryComboBox.DataSource = datatable;
-
-                sqlConnection.Close();
-            }
-            catch (Exception exception)
-            {
-                MessageBox.Show(exception.Message);
-            }
-        }
-        private void LoadToCompanyComboBox()
-        {
-            try
-            {
-                //connectionString
-                string connectionString = @"Server =DESKTOP-3K97P4H\SQLEXPRESS; Database =StockManagementSystem; Integrated Security = true";
-                SqlConnection sqlConnection = new SqlConnection();
-                sqlConnection.ConnectionString = connectionString;
-
-                string commandStringFind = "Select * from  Company";
-                SqlCommand sqlCommand = new SqlCommand();
-                sqlCommand.CommandText = commandStringFind;
-                sqlCommand.Connection = sqlConnection;
-                sqlConnection.Open();
-
-
-                //commandSting for Existing Category Checked
-
-                SqlDataAdapter adapter = new SqlDataAdapter(sqlCommand);
-                DataTable datatable = new DataTable();
-                adapter.Fill(datatable);
-                //
-                CompanyComboBox.DataSource = datatable;
-
-                sqlConnection.Close();
-            }
-            catch (Exception exception)
-            {
-                MessageBox.Show(exception.Message);
-            }
-        }
-
-        private void LoadToItemComboBox()
-        {
-            try
-            {
-                //connectionString
-                string connectionString = @"Server =DESKTOP-3K97P4H\SQLEXPRESS; Database =StockManagementSystem; Integrated Security = true";
-                SqlConnection sqlConnection = new SqlConnection();
-                sqlConnection.ConnectionString = connectionString;
-
-                string commandStringFind = "Select * from  Items";
-                SqlCommand sqlCommand = new SqlCommand();
-                sqlCommand.CommandText = commandStringFind;
-                sqlCommand.Connection = sqlConnection;
-                sqlConnection.Open();
-
-
-                //commandSting for Existing Category Checked
-
-                SqlDataAdapter adapter = new SqlDataAdapter(sqlCommand);
-                DataTable datatable = new DataTable();
-                adapter.Fill(datatable);
-                //
-                ItemComboBox.DataSource = datatable;
-
-                sqlConnection.Close();
-            }
-            catch (Exception exception)
-            {
-                MessageBox.Show(exception.Message);
-            }
-        }
+       
 
         private void AvailableQuantityTextBox_TextChanged(object sender, EventArgs e)
         {
             
         }
 
-        private void ReorderLevelTextBoxFunction()
-        {
-            try
-            {
-                //connectionString
-                string connectionString = @"Server =DESKTOP-3K97P4H\SQLEXPRESS; Database =StockManagementSystem; Integrated Security = true";
-                SqlConnection sqlConnection = new SqlConnection();
-                sqlConnection.ConnectionString = connectionString;
-
-                string commandStringFind = "Select * from  Items Where CategoryName = '" + CategoryComboBox.Text + "' and CompanyName = '" + CompanyComboBox.Text + "' and ItemName = '" + ItemComboBox.Text + "'";
-                SqlCommand sqlCommand = new SqlCommand();
-                sqlCommand.CommandText = commandStringFind;
-                sqlCommand.Connection = sqlConnection;
-                sqlConnection.Open();
-
-
-                //commandSting for Existing Category Checked
-
-                SqlDataAdapter adapter = new SqlDataAdapter(sqlCommand);
-                DataTable datatable = new DataTable();
-                int count = 0;
-                count = adapter.Fill(datatable);
-                //
-                if (count > 0)
-                {
-                    ReorderLevelTextBox.Text = datatable.Rows[0]["ReorderLevel"].ToString();
-
-                }
-                else
-                {
-                    ReorderLevelTextBox.Text ="0";
-
-                }
-
-
-                // ReorderLevelTextBox.Text = "2109";
-                sqlConnection.Close();
-            }
-            catch (Exception exception)
-            {
-                MessageBox.Show(exception.Message);
-            }
-        }
+        
         private void AvailableQuantityFunction()
         {
             try
@@ -258,20 +136,29 @@ namespace Stock_Management_System
         }
         private void ItemComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ReorderLevelTextBoxFunction();
+            itemModel.CategoryName = CategoryComboBox.Text;
+            itemModel.CompanyName = CompanyComboBox.Text;
+            itemModel.ItemName = ItemComboBox.Text;
+            ReorderLevelTextBox.Text = _StockInManager4.ReorderLevelTextBoxFunction(itemModel);
             AvailableQuantityFunction();
 
         }
 
         private void CompanyComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ReorderLevelTextBoxFunction();
+            itemModel.CategoryName = CategoryComboBox.Text;
+            itemModel.CompanyName = CompanyComboBox.Text;
+            itemModel.ItemName = ItemComboBox.Text;
+            ReorderLevelTextBox.Text = _StockInManager4.ReorderLevelTextBoxFunction(itemModel);
             AvailableQuantityFunction();
         }
 
         private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ReorderLevelTextBoxFunction();
+            itemModel.CategoryName = CategoryComboBox.Text;
+            itemModel.CompanyName = CompanyComboBox.Text;
+            itemModel.ItemName = ItemComboBox.Text;
+            ReorderLevelTextBox.Text = _StockInManager4.ReorderLevelTextBoxFunction(itemModel);
             AvailableQuantityFunction();
         }
 
