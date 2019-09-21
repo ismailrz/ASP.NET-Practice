@@ -1,0 +1,2 @@
+
+Insert into department values()

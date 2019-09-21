@@ -122,7 +122,7 @@
             this.Controls.Add(this.DepartmentGroup);
             this.Name = "DepartmentUi";
             this.Text = "Department";
-            this.Load += new System.EventHandler(this.DepartmentForm_Load);
+            this.Load += new System.EventHandler(this.DepartmentUi_Load);
             this.DepartmentGroup.ResumeLayout(false);
             this.DepartmentGroup.PerformLayout();
             this.ResumeLayout(false);
