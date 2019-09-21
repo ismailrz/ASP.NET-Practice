@@ -19,5 +19,11 @@ namespace University.BLL
         {
             return _departmentRepository.Save(department);
         }
+
+        public string IsExistOrInsert(Department department)
+        {
+            return _departmentRepository.IsExistOrInsert(department);
+          
+        }
     }
 }

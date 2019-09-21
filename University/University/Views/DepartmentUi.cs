@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,9 @@ namespace University.Views
     {
         Department department;
         DepartmentManager _departmentManager;
+        private SqlDataAdapter sqlDataAdapter;
+        private DataTable datatable;
+
         public DepartmentUi()
         {
             InitializeComponent();
@@ -26,30 +30,46 @@ namespace University.Views
 
         private void DepartmentSaveButton_Click(object sender, EventArgs e)
         {
-            department = new Department();
+            
             if(String.IsNullOrEmpty(departmentNameTextBox.Text))
             {
                 MessageBox.Show("Department Name is Empty");
                 return ;
             }
-            department.Dept_Name = departmentNameTextBox.Text;
+           
             if (String.IsNullOrEmpty(buildingTexBox.Text))
             {
                 MessageBox.Show("Building is Empty");
                 return;
             }
-            department.Building = buildingTexBox.Text;
+           
             if (String.IsNullOrEmpty(budgetTexBox.Text))
             {
                 MessageBox.Show("Budget is Empty");
                 return;
             }
-            if(System.Text.RegularExpressions.Regex.IsMatch(budgetTexBox.Text,@[0-9]))           
+            if (System.Text.RegularExpressions.Regex.IsMatch(budgetTexBox.Text, "[^0-9]"))
             {
-
+                MessageBox.Show("Budget is only numeric");
+                budgetTexBox.Text = budgetTexBox.Text.Remove(budgetTexBox.Text.Length - 1);
+                return;
             }
+            department = new Department();
+            department.Dept_Name = departmentNameTextBox.Text;
+            department.Building = buildingTexBox.Text;
             department.Budget = Convert.ToDouble(budgetTexBox.Text);
+
+            
+            string exist= _departmentManager.IsExistOrInsert(department);
+
+            if(!String.IsNullOrEmpty(exist))
+            {
+                MessageBox.Show(exist);
+                return;
+            }
+
             int isExecuted=_departmentManager.Save(department);
+
             if(isExecuted>0)
             {
                 MessageBox.Show("Saved Successfully");
@@ -58,9 +78,10 @@ namespace University.Views
             {
                 MessageBox.Show("Saved Failed");
             }
+           
         }
-
-        private void DepartmentUi_Load(object sender, EventArgs e)
+       
+            private void DepartmentUi_Load(object sender, EventArgs e)
         {
 
         }

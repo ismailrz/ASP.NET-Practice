@@ -18,7 +18,8 @@ namespace University
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new ClassRoomForm());
-            Application.Run(new DepartmentUi());
+           // Application.Run(new DepartmentUi());
+            Application.Run(new ClassRoomUi());
         }
     }
 }

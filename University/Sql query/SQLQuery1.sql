@@ -1,6 +1,6 @@
 Create DataBase University;
 use University;
-DROP DATABASE University
+
 
 Create table ClassRooms(
 building varchar(15),
@@ -107,4 +107,10 @@ primary key(time_slot_id, day, start_time)
 
 
 INSERT INTO Departments VALUES('CSE','Academic I',5000000)
-SELECT * FROM Departments
+SELECT dept_name FROM Departments where dept_name ='EEE';
+
+
+
+Insert INTO ClassRooms VALUES('Academic','AC-3',50);
+SELECT * FROM CLassRooms;
+SELECT * FROM ClassRooms WHERE building='Academic' AND room_number ='AC-3';

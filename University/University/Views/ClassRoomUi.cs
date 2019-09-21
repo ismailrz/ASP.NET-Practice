@@ -7,15 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using University.BLL;
 using University.Models;
 
 namespace University.Views
 {
     public partial class ClassRoomUi : Form
     {
+        ClassRoomManager classRoomManager;
         public ClassRoomUi()
         {
             InitializeComponent();
+            classRoomManager = new ClassRoomManager();
+
         }
 
         private void ClassroomSaveButton_Click(object sender, EventArgs e)
@@ -38,11 +42,33 @@ namespace University.Views
                     return;
                 }
 
+                if (System.Text.RegularExpressions.Regex.IsMatch(capacityTexBox.Text, "[^0-9]"))
+                {
+                    MessageBox.Show("Please enter a numeric capacity");
+                    capacityTexBox.Text = capacityTexBox.Text.Remove(capacityTexBox.Text.Length - 1);
+                    return;
+                }
+          
+
                 Classroom classroom = new Classroom();
 
                 classroom.Building = buildingTextBox.Text;
                 classroom.RoomNumber = roomNumberTexBox.Text;
                 classroom.Capacity = Convert.ToDouble( capacityTexBox.Text);
+
+               
+
+              string existOrInsert =  classRoomManager.IsExistOrInsert(classroom);
+                if (!String.IsNullOrEmpty(existOrInsert))
+                {
+                    MessageBox.Show(existOrInsert);
+                }
+                else
+                {
+                    MessageBox.Show("Data Insert successfull !");
+                }
+
+
             }
             catch (Exception ex)
             {

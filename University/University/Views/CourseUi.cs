@@ -36,6 +36,9 @@ namespace University.Views
             course.Title = titleTexbox.Text;
             course.Dept_name = departmentNameCombobox.Text;
             course.Credit =Convert.ToDouble( creditsTexbox.Text);
+
+
+
         }
     }
 }
