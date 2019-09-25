@@ -9,7 +9,7 @@ namespace University.Models
     public class Section
     {
         public string Course_id { get; set; }
-        public string Section_id { get; set; }
+        public string sec_id { get; set; }
         public string Semester { get; set; }
         public double Year { get; set; }
         public string Building { get; set; }

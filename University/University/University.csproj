@@ -46,8 +46,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\AdvisorManager.cs" />
     <Compile Include="BLL\ClassRoomManager.cs" />
+    <Compile Include="BLL\CourseManager.cs" />
     <Compile Include="BLL\DepartmentManager.cs" />
+    <Compile Include="BLL\InstructorManager.cs" />
+    <Compile Include="BLL\PreReqManager.cs" />
+    <Compile Include="BLL\SectionManager.cs" />
+    <Compile Include="BLL\StudentManager.cs" />
+    <Compile Include="BLL\TakesManager.cs" />
+    <Compile Include="BLL\TeachesManager.cs" />
     <Compile Include="Models\Advisor.cs" />
     <Compile Include="Models\Classroom.cs" />
     <Compile Include="Models\Course.cs" />
@@ -59,8 +67,16 @@
     <Compile Include="Models\Takes.cs" />
     <Compile Include="Models\Teaches.cs" />
     <Compile Include="Models\TimeSlot.cs" />
+    <Compile Include="Repository\AdvisorRepository.cs" />
     <Compile Include="Repository\ClassRoomRepository.cs" />
+    <Compile Include="Repository\CourseRepository.cs" />
     <Compile Include="Repository\DepartmentRepository.cs" />
+    <Compile Include="Repository\InstructorRepository.cs" />
+    <Compile Include="Repository\PreReqRepository.cs" />
+    <Compile Include="Repository\SectionRepository.cs" />
+    <Compile Include="Repository\StudentRepository.cs" />
+    <Compile Include="Repository\TakesRepository.cs" />
+    <Compile Include="Repository\TeachesRepository.cs" />
     <Compile Include="Views\AdvisorUi.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -171,6 +187,14 @@
     <EmbeddedResource Include="Views\TimeSlotUi.resx">
       <DependentUpon>TimeSlotUi.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Properties\DataSources\University.Models.Classroom.datasource" />
+    <None Include="Properties\DataSources\University.Models.Course.datasource" />
+    <None Include="Properties\DataSources\University.Models.Department.datasource" />
+    <None Include="Properties\DataSources\University.Models.Instructor.datasource" />
+    <None Include="Properties\DataSources\University.Models.Instructor1.datasource" />
+    <None Include="Properties\DataSources\University.Models.Section.datasource" />
+    <None Include="Properties\DataSources\University.Models.Student.datasource" />
+    <None Include="Properties\DataSources\University.Models.Student1.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

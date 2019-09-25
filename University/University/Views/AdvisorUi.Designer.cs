@@ -28,13 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.AdvisorGroup = new System.Windows.Forms.GroupBox();
             this.instructorIdComboBox = new System.Windows.Forms.ComboBox();
             this.studentIdComboBox = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.AdvisorSaveButton = new System.Windows.Forms.Button();
+            this.studentBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.instructorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.AdvisorGroup.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.studentBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.instructorBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // AdvisorGroup
@@ -53,19 +58,25 @@
             // 
             // instructorIdComboBox
             // 
+            this.instructorIdComboBox.DataSource = this.instructorBindingSource;
+            this.instructorIdComboBox.DisplayMember = "ID";
             this.instructorIdComboBox.FormattingEnabled = true;
             this.instructorIdComboBox.Location = new System.Drawing.Point(135, 99);
             this.instructorIdComboBox.Name = "instructorIdComboBox";
             this.instructorIdComboBox.Size = new System.Drawing.Size(203, 21);
             this.instructorIdComboBox.TabIndex = 19;
+            this.instructorIdComboBox.ValueMember = "ID";
             // 
             // studentIdComboBox
             // 
+            this.studentIdComboBox.DataSource = this.studentBindingSource;
+            this.studentIdComboBox.DisplayMember = "ID";
             this.studentIdComboBox.FormattingEnabled = true;
             this.studentIdComboBox.Location = new System.Drawing.Point(135, 54);
             this.studentIdComboBox.Name = "studentIdComboBox";
             this.studentIdComboBox.Size = new System.Drawing.Size(203, 21);
             this.studentIdComboBox.TabIndex = 16;
+            this.studentIdComboBox.ValueMember = "ID";
             // 
             // label2
             // 
@@ -95,6 +106,14 @@
             this.AdvisorSaveButton.UseVisualStyleBackColor = true;
             this.AdvisorSaveButton.Click += new System.EventHandler(this.AdvisorSaveButton_Click);
             // 
+            // studentBindingSource
+            // 
+            this.studentBindingSource.DataSource = typeof(University.Models.Student);
+            // 
+            // instructorBindingSource
+            // 
+            this.instructorBindingSource.DataSource = typeof(University.Models.Instructor);
+            // 
             // AdvisorUi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -103,8 +122,11 @@
             this.Controls.Add(this.AdvisorGroup);
             this.Name = "AdvisorUi";
             this.Text = "AdvisorUi";
+            this.Load += new System.EventHandler(this.AdvisorUi_Load);
             this.AdvisorGroup.ResumeLayout(false);
             this.AdvisorGroup.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.studentBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.instructorBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -117,5 +139,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button AdvisorSaveButton;
+        private System.Windows.Forms.BindingSource instructorBindingSource;
+        private System.Windows.Forms.BindingSource studentBindingSource;
     }
 }

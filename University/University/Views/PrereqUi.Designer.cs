@@ -28,13 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.PrereqGroup = new System.Windows.Forms.GroupBox();
             this.prereqIdComboBox = new System.Windows.Forms.ComboBox();
             this.courseIdComboBox = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.PrereqSaveButton = new System.Windows.Forms.Button();
+            this.courseBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.PrereqGroup.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.courseBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // PrereqGroup
@@ -53,19 +56,25 @@
             // 
             // prereqIdComboBox
             // 
+            this.prereqIdComboBox.DataSource = this.courseBindingSource;
+            this.prereqIdComboBox.DisplayMember = "Course_id";
             this.prereqIdComboBox.FormattingEnabled = true;
             this.prereqIdComboBox.Location = new System.Drawing.Point(135, 99);
             this.prereqIdComboBox.Name = "prereqIdComboBox";
             this.prereqIdComboBox.Size = new System.Drawing.Size(203, 21);
             this.prereqIdComboBox.TabIndex = 19;
+            this.prereqIdComboBox.ValueMember = "Course_id";
             // 
             // courseIdComboBox
             // 
+            this.courseIdComboBox.DataSource = this.courseBindingSource;
+            this.courseIdComboBox.DisplayMember = "Course_id";
             this.courseIdComboBox.FormattingEnabled = true;
             this.courseIdComboBox.Location = new System.Drawing.Point(135, 54);
             this.courseIdComboBox.Name = "courseIdComboBox";
             this.courseIdComboBox.Size = new System.Drawing.Size(203, 21);
             this.courseIdComboBox.TabIndex = 16;
+            this.courseIdComboBox.ValueMember = "Course_id";
             // 
             // label2
             // 
@@ -95,6 +104,10 @@
             this.PrereqSaveButton.UseVisualStyleBackColor = true;
             this.PrereqSaveButton.Click += new System.EventHandler(this.PrereqSaveButton_Click);
             // 
+            // courseBindingSource
+            // 
+            this.courseBindingSource.DataSource = typeof(University.Models.Course);
+            // 
             // PrereqUi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -103,8 +116,10 @@
             this.Controls.Add(this.PrereqGroup);
             this.Name = "PrereqUi";
             this.Text = "PrereqUi";
+            this.Load += new System.EventHandler(this.PrereqUi_Load);
             this.PrereqGroup.ResumeLayout(false);
             this.PrereqGroup.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.courseBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -117,5 +132,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button PrereqSaveButton;
+        private System.Windows.Forms.BindingSource courseBindingSource;
     }
 }

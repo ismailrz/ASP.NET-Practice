@@ -20,11 +20,32 @@ namespace University.Views
 
         private void TimeSlotSaveButton_Click(object sender, EventArgs e)
         {
+            if (String.IsNullOrEmpty(timeSlotIdTexbox.Text))
+            {
+                MessageBox.Show("Select a time slot ID");
+                return;
+            }
+
+            if (String.IsNullOrEmpty(dayComboBox.Text))
+            {
+                MessageBox.Show("Select a Day");
+                return;
+            }
+      
+
             TimeSlot timeSlot = new TimeSlot();
             timeSlot.Time_slot_id = timeSlotIdTexbox.Text;
-            timeSlot.Day = dayTexbox.Text;
-            timeSlot.Start_time = startTimeTexBox.Text;
-            timeSlot.End_time = endTimeTexbox.Text;
+            timeSlot.Day = dayComboBox.Text;
+            timeSlot.Start_time = startDateTimePicker.CustomFormat;
+            timeSlot.End_time = endDateTimePicker.CustomFormat;
+
+          
+
+        }
+
+        private void DateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

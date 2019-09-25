@@ -9,47 +9,61 @@ using University.Models;
 
 namespace University.Repository
 {
-   
-
-    public class ClassRoomRepository
+    class InstructorRepository
     {
         string connectionString;
-        string commandString;
-        SqlConnection sqlConnection;
+        string commadString;
         SqlCommand sqlCommand;
+        SqlConnection sqlConnection;
         SqlDataAdapter sqlDataAdapter;
         DataTable dataTable;
-        public ClassRoomRepository()
+
+      public InstructorRepository()
         {
+
             connectionString = @"Server=DESKTOP-3K97P4H\SQLEXPRESS ;Database=University ; Integrated Security=True";
             sqlConnection = new SqlConnection(connectionString);
         }
 
-        public string IsExistOrInsert(Classroom classroom)
+        public DataTable GetDepartmentTocomboBox()
+        {
+            commadString = "SELECT * FROM Departments";
+            sqlCommand = new SqlCommand(commadString, sqlConnection);
+
+            sqlConnection.Open();
+
+            sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+            dataTable = new DataTable();
+            sqlDataAdapter.Fill(dataTable);
+
+
+            sqlConnection.Close();
+
+            return dataTable;
+        }
+        public string IsExistOrInsert(Instructor instructor)
         {
             string exist="";
+
             try {
-               
-                commandString = "SELECT * FROM ClassRooms WHERE building='"+classroom.Building+"' AND room_number ='"+classroom.Room_Number+"'";
-                sqlCommand = new SqlCommand(commandString, sqlConnection);
+                commadString = "SELECT * FROM Instructors WHERE ID = '"+instructor.ID+"'";
+                sqlCommand = new SqlCommand(commadString, sqlConnection);
 
                 sqlConnection.Open();
-
                 sqlDataAdapter = new SqlDataAdapter(sqlCommand);
                 dataTable = new DataTable();
                 sqlDataAdapter.Fill(dataTable);
 
-                if (dataTable.Rows.Count > 0)
+                if(dataTable.Rows.Count > 0)
                 {
-                    exist = classroom.Building+ " and "+ classroom.Room_Number +" are exist \n\t Please enter a new building and room number!!!";
-                   
+                    exist = instructor.ID + " is exist \n Please insert a new ID ";
                 }
                 sqlConnection.Close();
 
                 if (String.IsNullOrEmpty(exist))
                 {
-                    commandString = "Insert INTO ClassRooms VALUES('"+classroom.Building+"','"+classroom.Room_Number+"',"+classroom.Capacity+")";
-                    sqlCommand = new SqlCommand(commandString, sqlConnection);
+                    commadString = "INSERT INTO Instructors VALUES('" + instructor.ID + "','" + instructor.Name + "','" + instructor.Dept_name + "'," + instructor.Salary + ")";
+                    sqlCommand = new SqlCommand(commadString, sqlConnection);
 
                     sqlConnection.Open();
 
@@ -57,12 +71,17 @@ namespace University.Repository
 
                     sqlConnection.Close();
                 }
+
             }
             catch (Exception exception)
             {
 
             }
+
             return exist;
         }
+
+       
+
     }
 }

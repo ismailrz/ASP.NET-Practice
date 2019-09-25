@@ -53,7 +53,7 @@ namespace University.Views
                 Classroom classroom = new Classroom();
 
                 classroom.Building = buildingTextBox.Text;
-                classroom.RoomNumber = roomNumberTexBox.Text;
+                classroom.Room_Number = roomNumberTexBox.Text;
                 classroom.Capacity = Convert.ToDouble( capacityTexBox.Text);
 
                

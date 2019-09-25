@@ -9,9 +9,7 @@ using University.Models;
 
 namespace University.Repository
 {
-   
-
-    public class ClassRoomRepository
+    class CourseRepository
     {
         string connectionString;
         string commandString;
@@ -19,18 +17,42 @@ namespace University.Repository
         SqlCommand sqlCommand;
         SqlDataAdapter sqlDataAdapter;
         DataTable dataTable;
-        public ClassRoomRepository()
+        public CourseRepository()
         {
             connectionString = @"Server=DESKTOP-3K97P4H\SQLEXPRESS ;Database=University ; Integrated Security=True";
             sqlConnection = new SqlConnection(connectionString);
         }
 
-        public string IsExistOrInsert(Classroom classroom)
+        public DataTable GetDepartmentsToComboBox()
         {
-            string exist="";
-            try {
-               
-                commandString = "SELECT * FROM ClassRooms WHERE building='"+classroom.Building+"' AND room_number ='"+classroom.Room_Number+"'";
+            try
+            {
+                commandString = "SELECT * FROM Departments";
+                sqlCommand = new SqlCommand(commandString, sqlConnection);
+                sqlConnection.Open();
+
+                sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+                dataTable = new DataTable();
+                sqlDataAdapter.Fill(dataTable);
+
+
+                sqlConnection.Close();
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return dataTable;
+        
+        }
+        public string IsExistOrInsert(Course course)
+        {
+            string exist = "";
+            try
+            {
+
+                commandString = "SELECT * FROM Courses WHERE course_id = '"+course.Course_id+"'";
                 sqlCommand = new SqlCommand(commandString, sqlConnection);
 
                 sqlConnection.Open();
@@ -41,14 +63,14 @@ namespace University.Repository
 
                 if (dataTable.Rows.Count > 0)
                 {
-                    exist = classroom.Building+ " and "+ classroom.Room_Number +" are exist \n\t Please enter a new building and room number!!!";
-                   
+                    exist = course.Course_id+ " is exist \n\t Please enter a new course ID !!!";
+
                 }
                 sqlConnection.Close();
 
                 if (String.IsNullOrEmpty(exist))
                 {
-                    commandString = "Insert INTO ClassRooms VALUES('"+classroom.Building+"','"+classroom.Room_Number+"',"+classroom.Capacity+")";
+                    commandString = "INSERT INTO Courses VALUES('"+course.Course_id+"','"+course.Title+"','"+course.Dept_name+"',"+course.Credit+")";
                     sqlCommand = new SqlCommand(commandString, sqlConnection);
 
                     sqlConnection.Open();
@@ -64,5 +86,8 @@ namespace University.Repository
             }
             return exist;
         }
+
+
+
     }
 }

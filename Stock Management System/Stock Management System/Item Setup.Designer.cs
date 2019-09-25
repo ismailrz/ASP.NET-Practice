@@ -38,12 +38,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.SaveButton = new System.Windows.Forms.Button();
             this.companyComboBox = new System.Windows.Forms.ComboBox();
+            this.companyModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.categoryComboBox = new System.Windows.Forms.ComboBox();
             this.categoryModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.companyModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.categoryModelBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.companyModelBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.categoryModelBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -136,6 +136,10 @@
             this.companyComboBox.TabIndex = 10;
             this.companyComboBox.ValueMember = "Serial";
             // 
+            // companyModelBindingSource
+            // 
+            this.companyModelBindingSource.DataSource = typeof(Stock_Management_System.Models.CompanyModel);
+            // 
             // categoryComboBox
             // 
             this.categoryComboBox.DataSource = this.categoryModelBindingSource;
@@ -146,14 +150,11 @@
             this.categoryComboBox.Size = new System.Drawing.Size(216, 32);
             this.categoryComboBox.TabIndex = 9;
             this.categoryComboBox.ValueMember = "Serial";
+            this.categoryComboBox.SelectedIndexChanged += new System.EventHandler(this.CategoryComboBox_SelectedIndexChanged);
             // 
             // categoryModelBindingSource
             // 
             this.categoryModelBindingSource.DataSource = typeof(Stock_Management_System.Models.CategoryModel);
-            // 
-            // companyModelBindingSource
-            // 
-            this.companyModelBindingSource.DataSource = typeof(Stock_Management_System.Models.CompanyModel);
             // 
             // Item_Setup
             // 
@@ -166,8 +167,8 @@
             this.Load += new System.EventHandler(this.Item_Setup_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.categoryModelBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.companyModelBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.categoryModelBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

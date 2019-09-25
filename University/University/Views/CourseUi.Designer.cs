@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.CourseGroup = new System.Windows.Forms.GroupBox();
             this.departmentNameCombobox = new System.Windows.Forms.ComboBox();
+            this.departmentBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label2 = new System.Windows.Forms.Label();
             this.creditsTexbox = new System.Windows.Forms.TextBox();
             this.CourseSaveButton = new System.Windows.Forms.Button();
@@ -38,7 +40,12 @@
             this.titleTexbox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.courseIdTexbox = new System.Windows.Forms.TextBox();
+            this.courseBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.courseBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.CourseGroup.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.departmentBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.courseBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.courseBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // CourseGroup
@@ -61,12 +68,19 @@
             // 
             // departmentNameCombobox
             // 
+            this.departmentNameCombobox.DataSource = this.departmentBindingSource;
+            this.departmentNameCombobox.DisplayMember = "Dept_name";
             this.departmentNameCombobox.FormattingEnabled = true;
             this.departmentNameCombobox.Location = new System.Drawing.Point(129, 119);
             this.departmentNameCombobox.Name = "departmentNameCombobox";
             this.departmentNameCombobox.Size = new System.Drawing.Size(203, 21);
             this.departmentNameCombobox.TabIndex = 3;
-            this.departmentNameCombobox.SelectedIndexChanged += new System.EventHandler(this.ComboBox1_SelectedIndexChanged);
+            this.departmentNameCombobox.ValueMember = "Dept_Name";
+            this.departmentNameCombobox.SelectedIndexChanged += new System.EventHandler(this.DepartmentNameCombobox_SelectedIndexChanged);
+            // 
+            // departmentBindingSource
+            // 
+            this.departmentBindingSource.DataSource = typeof(University.Models.Department);
             // 
             // label2
             // 
@@ -135,6 +149,14 @@
             this.courseIdTexbox.Size = new System.Drawing.Size(203, 20);
             this.courseIdTexbox.TabIndex = 2;
             // 
+            // courseBindingSource
+            // 
+            this.courseBindingSource.DataSource = typeof(University.Models.Course);
+            // 
+            // courseBindingSource1
+            // 
+            this.courseBindingSource1.DataSource = typeof(University.Models.Course);
+            // 
             // CourseUi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -146,6 +168,9 @@
             this.Load += new System.EventHandler(this.CourseForm_Load);
             this.CourseGroup.ResumeLayout(false);
             this.CourseGroup.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.departmentBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.courseBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.courseBindingSource1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -162,6 +187,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox courseIdTexbox;
         private System.Windows.Forms.ComboBox departmentNameCombobox;
+        private System.Windows.Forms.BindingSource courseBindingSource;
+        private System.Windows.Forms.BindingSource departmentBindingSource;
+        private System.Windows.Forms.BindingSource courseBindingSource1;
     }
 }
 

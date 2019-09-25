@@ -28,11 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.TakesGroup = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.gradeTexBox = new System.Windows.Forms.TextBox();
             this.yearComboBox = new System.Windows.Forms.ComboBox();
+            this.sectionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.courseIdComboBox = new System.Windows.Forms.ComboBox();
             this.semesterComboBox = new System.Windows.Forms.ComboBox();
             this.idComboBox = new System.Windows.Forms.ComboBox();
+            this.studentBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label2 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.sectionIdComboBox = new System.Windows.Forms.ComboBox();
@@ -40,9 +45,9 @@
             this.TakesSaveButton = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.gradeTexBox = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.TakesGroup.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.sectionBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.studentBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // TakesGroup
@@ -67,46 +72,82 @@
             this.TakesGroup.TabStop = false;
             this.TakesGroup.Text = "Takes";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(39, 274);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(36, 13);
+            this.label5.TabIndex = 22;
+            this.label5.Text = "Grade";
+            // 
+            // gradeTexBox
+            // 
+            this.gradeTexBox.Location = new System.Drawing.Point(135, 274);
+            this.gradeTexBox.Name = "gradeTexBox";
+            this.gradeTexBox.Size = new System.Drawing.Size(203, 20);
+            this.gradeTexBox.TabIndex = 21;
+            // 
             // yearComboBox
             // 
+            this.yearComboBox.DataSource = this.sectionBindingSource;
+            this.yearComboBox.DisplayMember = "Year";
             this.yearComboBox.FormattingEnabled = true;
             this.yearComboBox.Location = new System.Drawing.Point(135, 238);
             this.yearComboBox.Name = "yearComboBox";
             this.yearComboBox.Size = new System.Drawing.Size(203, 21);
             this.yearComboBox.TabIndex = 20;
+            this.yearComboBox.ValueMember = "Year";
+            // 
+            // sectionBindingSource
+            // 
+            this.sectionBindingSource.DataSource = typeof(University.Models.Section);
             // 
             // courseIdComboBox
             // 
+            this.courseIdComboBox.DataSource = this.sectionBindingSource;
+            this.courseIdComboBox.DisplayMember = "Course_id";
             this.courseIdComboBox.FormattingEnabled = true;
             this.courseIdComboBox.Location = new System.Drawing.Point(135, 99);
             this.courseIdComboBox.Name = "courseIdComboBox";
             this.courseIdComboBox.Size = new System.Drawing.Size(203, 21);
             this.courseIdComboBox.TabIndex = 19;
+            this.courseIdComboBox.ValueMember = "Course_id";
             // 
             // semesterComboBox
             // 
+            this.semesterComboBox.DataSource = this.sectionBindingSource;
+            this.semesterComboBox.DisplayMember = "Semester";
             this.semesterComboBox.FormattingEnabled = true;
             this.semesterComboBox.Location = new System.Drawing.Point(135, 189);
             this.semesterComboBox.Name = "semesterComboBox";
             this.semesterComboBox.Size = new System.Drawing.Size(203, 21);
             this.semesterComboBox.TabIndex = 18;
+            this.semesterComboBox.ValueMember = "Semester";
             // 
             // idComboBox
             // 
+            this.idComboBox.DataSource = this.studentBindingSource;
+            this.idComboBox.DisplayMember = "ID";
             this.idComboBox.FormattingEnabled = true;
             this.idComboBox.Location = new System.Drawing.Point(135, 54);
             this.idComboBox.Name = "idComboBox";
             this.idComboBox.Size = new System.Drawing.Size(203, 21);
             this.idComboBox.TabIndex = 16;
+            this.idComboBox.ValueMember = "ID";
+            // 
+            // studentBindingSource
+            // 
+            this.studentBindingSource.DataSource = typeof(University.Models.Student);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(35, 54);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(18, 13);
+            this.label2.Size = new System.Drawing.Size(58, 13);
             this.label2.TabIndex = 17;
-            this.label2.Text = "ID";
+            this.label2.Text = "Student ID";
             // 
             // label7
             // 
@@ -119,11 +160,14 @@
             // 
             // sectionIdComboBox
             // 
+            this.sectionIdComboBox.DataSource = this.sectionBindingSource;
+            this.sectionIdComboBox.DisplayMember = "sec_id";
             this.sectionIdComboBox.FormattingEnabled = true;
             this.sectionIdComboBox.Location = new System.Drawing.Point(135, 144);
             this.sectionIdComboBox.Name = "sectionIdComboBox";
             this.sectionIdComboBox.Size = new System.Drawing.Size(203, 21);
             this.sectionIdComboBox.TabIndex = 10;
+            this.sectionIdComboBox.ValueMember = "sec_id";
             // 
             // label3
             // 
@@ -162,22 +206,6 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Section ID";
             // 
-            // gradeTexBox
-            // 
-            this.gradeTexBox.Location = new System.Drawing.Point(135, 274);
-            this.gradeTexBox.Name = "gradeTexBox";
-            this.gradeTexBox.Size = new System.Drawing.Size(203, 20);
-            this.gradeTexBox.TabIndex = 21;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(39, 274);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(36, 13);
-            this.label5.TabIndex = 22;
-            this.label5.Text = "Grade";
-            // 
             // TakesUi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -186,8 +214,11 @@
             this.Controls.Add(this.TakesGroup);
             this.Name = "TakesUi";
             this.Text = "TakesUi";
+            this.Load += new System.EventHandler(this.TakesUi_Load);
             this.TakesGroup.ResumeLayout(false);
             this.TakesGroup.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.sectionBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.studentBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -208,5 +239,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox gradeTexBox;
+        private System.Windows.Forms.BindingSource studentBindingSource;
+        private System.Windows.Forms.BindingSource sectionBindingSource;
     }
 }

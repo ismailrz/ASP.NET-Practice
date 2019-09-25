@@ -19,7 +19,16 @@ namespace University
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new ClassRoomForm());
            // Application.Run(new DepartmentUi());
-            Application.Run(new ClassRoomUi());
+            //Application.Run(new ClassRoomUi());
+           // Application.Run(new CourseUi());
+            //Application.Run(new InstructorUi());
+           // Application.Run(new StudentUi());
+          //  Application.Run(new SectionUi());
+            //Application.Run(new TakesUi());
+           // Application.Run(new TeachesUi());
+           // Application.Run(new AdvisorUi());
+            Application.Run(new PrereqUi());
+
         }
     }
 }

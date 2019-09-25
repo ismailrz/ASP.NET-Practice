@@ -34,10 +34,11 @@ namespace Stock_Management_System
 
            
         }
-        
-   
 
-     
+        private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
 
         private void SaveButton_Click(object sender, EventArgs e)
         {

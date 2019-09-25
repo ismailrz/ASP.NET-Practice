@@ -28,19 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.TeachesGroup = new System.Windows.Forms.GroupBox();
+            this.yearComboBox = new System.Windows.Forms.ComboBox();
+            this.courseIdComboBox = new System.Windows.Forms.ComboBox();
+            this.semesterComboBox = new System.Windows.Forms.ComboBox();
+            this.idComboBox = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.sectionIdComboBox = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.TeachesSaveButton = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.idComboBox = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.semesterComboBox = new System.Windows.Forms.ComboBox();
-            this.courseIdComboBox = new System.Windows.Forms.ComboBox();
-            this.yearComboBox = new System.Windows.Forms.ComboBox();
+            this.instructorBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.sectionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.TeachesGroup.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.instructorBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sectionBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // TeachesGroup
@@ -63,6 +68,59 @@
             this.TeachesGroup.TabStop = false;
             this.TeachesGroup.Text = "Teaches";
             // 
+            // yearComboBox
+            // 
+            this.yearComboBox.DataSource = this.sectionBindingSource;
+            this.yearComboBox.DisplayMember = "Year";
+            this.yearComboBox.FormattingEnabled = true;
+            this.yearComboBox.Location = new System.Drawing.Point(135, 238);
+            this.yearComboBox.Name = "yearComboBox";
+            this.yearComboBox.Size = new System.Drawing.Size(203, 21);
+            this.yearComboBox.TabIndex = 20;
+            this.yearComboBox.ValueMember = "Year";
+            // 
+            // courseIdComboBox
+            // 
+            this.courseIdComboBox.DataSource = this.sectionBindingSource;
+            this.courseIdComboBox.DisplayMember = "Course_id";
+            this.courseIdComboBox.FormattingEnabled = true;
+            this.courseIdComboBox.Location = new System.Drawing.Point(135, 99);
+            this.courseIdComboBox.Name = "courseIdComboBox";
+            this.courseIdComboBox.Size = new System.Drawing.Size(203, 21);
+            this.courseIdComboBox.TabIndex = 19;
+            this.courseIdComboBox.ValueMember = "Course_id";
+            // 
+            // semesterComboBox
+            // 
+            this.semesterComboBox.DataSource = this.sectionBindingSource;
+            this.semesterComboBox.DisplayMember = "Semester";
+            this.semesterComboBox.FormattingEnabled = true;
+            this.semesterComboBox.Location = new System.Drawing.Point(135, 189);
+            this.semesterComboBox.Name = "semesterComboBox";
+            this.semesterComboBox.Size = new System.Drawing.Size(203, 21);
+            this.semesterComboBox.TabIndex = 18;
+            this.semesterComboBox.ValueMember = "Semester";
+            // 
+            // idComboBox
+            // 
+            this.idComboBox.DataSource = this.instructorBindingSource;
+            this.idComboBox.DisplayMember = "ID";
+            this.idComboBox.FormattingEnabled = true;
+            this.idComboBox.Location = new System.Drawing.Point(135, 54);
+            this.idComboBox.Name = "idComboBox";
+            this.idComboBox.Size = new System.Drawing.Size(203, 21);
+            this.idComboBox.TabIndex = 16;
+            this.idComboBox.ValueMember = "ID";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(35, 54);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(65, 13);
+            this.label2.TabIndex = 17;
+            this.label2.Text = "Instructor ID";
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -74,11 +132,14 @@
             // 
             // sectionIdComboBox
             // 
+            this.sectionIdComboBox.DataSource = this.sectionBindingSource;
+            this.sectionIdComboBox.DisplayMember = "sec_id";
             this.sectionIdComboBox.FormattingEnabled = true;
             this.sectionIdComboBox.Location = new System.Drawing.Point(135, 144);
             this.sectionIdComboBox.Name = "sectionIdComboBox";
             this.sectionIdComboBox.Size = new System.Drawing.Size(203, 21);
             this.sectionIdComboBox.TabIndex = 10;
+            this.sectionIdComboBox.ValueMember = "sec_id";
             // 
             // label3
             // 
@@ -117,46 +178,13 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Section ID";
             // 
-            // idComboBox
+            // instructorBindingSource
             // 
-            this.idComboBox.FormattingEnabled = true;
-            this.idComboBox.Location = new System.Drawing.Point(135, 54);
-            this.idComboBox.Name = "idComboBox";
-            this.idComboBox.Size = new System.Drawing.Size(203, 21);
-            this.idComboBox.TabIndex = 16;
+            this.instructorBindingSource.DataSource = typeof(University.Models.Instructor);
             // 
-            // label2
+            // sectionBindingSource
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(35, 54);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(18, 13);
-            this.label2.TabIndex = 17;
-            this.label2.Text = "ID";
-            // 
-            // semesterComboBox
-            // 
-            this.semesterComboBox.FormattingEnabled = true;
-            this.semesterComboBox.Location = new System.Drawing.Point(135, 189);
-            this.semesterComboBox.Name = "semesterComboBox";
-            this.semesterComboBox.Size = new System.Drawing.Size(203, 21);
-            this.semesterComboBox.TabIndex = 18;
-            // 
-            // courseIdComboBox
-            // 
-            this.courseIdComboBox.FormattingEnabled = true;
-            this.courseIdComboBox.Location = new System.Drawing.Point(135, 99);
-            this.courseIdComboBox.Name = "courseIdComboBox";
-            this.courseIdComboBox.Size = new System.Drawing.Size(203, 21);
-            this.courseIdComboBox.TabIndex = 19;
-            // 
-            // yearComboBox
-            // 
-            this.yearComboBox.FormattingEnabled = true;
-            this.yearComboBox.Location = new System.Drawing.Point(135, 238);
-            this.yearComboBox.Name = "yearComboBox";
-            this.yearComboBox.Size = new System.Drawing.Size(203, 21);
-            this.yearComboBox.TabIndex = 20;
+            this.sectionBindingSource.DataSource = typeof(University.Models.Section);
             // 
             // TeachesUi
             // 
@@ -166,8 +194,11 @@
             this.Controls.Add(this.TeachesGroup);
             this.Name = "TeachesUi";
             this.Text = "TeachesUi";
+            this.Load += new System.EventHandler(this.TeachesUi_Load);
             this.TeachesGroup.ResumeLayout(false);
             this.TeachesGroup.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.instructorBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sectionBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -186,5 +217,7 @@
         private System.Windows.Forms.ComboBox semesterComboBox;
         private System.Windows.Forms.ComboBox idComboBox;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.BindingSource sectionBindingSource;
+        private System.Windows.Forms.BindingSource instructorBindingSource;
     }
 }

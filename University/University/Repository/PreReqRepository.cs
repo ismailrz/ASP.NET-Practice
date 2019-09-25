@@ -9,31 +9,48 @@ using University.Models;
 
 namespace University.Repository
 {
-   
-
-    public class ClassRoomRepository
+    class PreReqRepository
     {
         string connectionString;
-        string commandString;
-        SqlConnection sqlConnection;
+        string commadString;
         SqlCommand sqlCommand;
+        SqlConnection sqlConnection;
         SqlDataAdapter sqlDataAdapter;
         DataTable dataTable;
-        public ClassRoomRepository()
+        public PreReqRepository()
         {
             connectionString = @"Server=DESKTOP-3K97P4H\SQLEXPRESS ;Database=University ; Integrated Security=True";
             sqlConnection = new SqlConnection(connectionString);
         }
-
-        public string IsExistOrInsert(Classroom classroom)
+       
+        public DataTable GetCourseIdTocomboBox()
         {
-            string exist="";
-            try {
-               
-                commandString = "SELECT * FROM ClassRooms WHERE building='"+classroom.Building+"' AND room_number ='"+classroom.Room_Number+"'";
-                sqlCommand = new SqlCommand(commandString, sqlConnection);
+            commadString = "SELECT * FROM Courses";
+            sqlCommand = new SqlCommand(commadString, sqlConnection);
 
+            sqlConnection.Open();
+
+            sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+            dataTable = new DataTable();
+            sqlDataAdapter.Fill(dataTable);
+
+
+            sqlConnection.Close();
+
+            return dataTable;
+
+        }
+
+        public string IsExistOrInsert(Prereq prereq)
+        {
+            string exist = "";
+
+            try
+            {
                 sqlConnection.Open();
+                commadString = "SELECT * FROM prereqs WHERE course_id = '"+prereq.Course_id+"' AND prereq_id = '"+prereq.Prereq_id+"'";
+                sqlCommand = new SqlCommand(commadString, sqlConnection);
+
 
                 sqlDataAdapter = new SqlDataAdapter(sqlCommand);
                 dataTable = new DataTable();
@@ -41,27 +58,27 @@ namespace University.Repository
 
                 if (dataTable.Rows.Count > 0)
                 {
-                    exist = classroom.Building+ " and "+ classroom.Room_Number +" are exist \n\t Please enter a new building and room number!!!";
-                   
+                    exist = "Data  is exist \n Please check duplicated data";
                 }
                 sqlConnection.Close();
 
                 if (String.IsNullOrEmpty(exist))
                 {
-                    commandString = "Insert INTO ClassRooms VALUES('"+classroom.Building+"','"+classroom.Room_Number+"',"+classroom.Capacity+")";
-                    sqlCommand = new SqlCommand(commandString, sqlConnection);
-
                     sqlConnection.Open();
+                    commadString = "INSERT INTO prereqs VALUES('"+prereq.Course_id+"','"+prereq.Prereq_id+"')";
+                    sqlCommand = new SqlCommand(commadString, sqlConnection);
 
                     sqlCommand.ExecuteNonQuery();
 
                     sqlConnection.Close();
                 }
+
             }
             catch (Exception exception)
             {
-
+                sqlConnection.Close();
             }
+
             return exist;
         }
     }

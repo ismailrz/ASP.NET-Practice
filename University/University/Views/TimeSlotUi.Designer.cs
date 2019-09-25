@@ -30,26 +30,26 @@
         {
             this.TimeSlotGroup = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.endTimeTexbox = new System.Windows.Forms.TextBox();
             this.TimeSlotSaveButton = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.dayTexbox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.timeSlotIdTexbox = new System.Windows.Forms.TextBox();
-            this.startTimeTexBox = new System.Windows.Forms.TextBox();
+            this.dayComboBox = new System.Windows.Forms.ComboBox();
+            this.startDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.endDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.TimeSlotGroup.SuspendLayout();
             this.SuspendLayout();
             // 
             // TimeSlotGroup
             // 
-            this.TimeSlotGroup.Controls.Add(this.startTimeTexBox);
+            this.TimeSlotGroup.Controls.Add(this.endDateTimePicker);
+            this.TimeSlotGroup.Controls.Add(this.startDateTimePicker);
+            this.TimeSlotGroup.Controls.Add(this.dayComboBox);
             this.TimeSlotGroup.Controls.Add(this.label2);
-            this.TimeSlotGroup.Controls.Add(this.endTimeTexbox);
             this.TimeSlotGroup.Controls.Add(this.TimeSlotSaveButton);
             this.TimeSlotGroup.Controls.Add(this.label5);
             this.TimeSlotGroup.Controls.Add(this.label4);
-            this.TimeSlotGroup.Controls.Add(this.dayTexbox);
             this.TimeSlotGroup.Controls.Add(this.label1);
             this.TimeSlotGroup.Controls.Add(this.timeSlotIdTexbox);
             this.TimeSlotGroup.Location = new System.Drawing.Point(33, 46);
@@ -67,13 +67,6 @@
             this.label2.Size = new System.Drawing.Size(52, 13);
             this.label2.TabIndex = 8;
             this.label2.Text = "End Time";
-            // 
-            // endTimeTexbox
-            // 
-            this.endTimeTexbox.Location = new System.Drawing.Point(129, 162);
-            this.endTimeTexbox.Name = "endTimeTexbox";
-            this.endTimeTexbox.Size = new System.Drawing.Size(203, 20);
-            this.endTimeTexbox.TabIndex = 9;
             // 
             // TimeSlotSaveButton
             // 
@@ -103,13 +96,6 @@
             this.label4.TabIndex = 3;
             this.label4.Text = "Day";
             // 
-            // dayTexbox
-            // 
-            this.dayTexbox.Location = new System.Drawing.Point(129, 74);
-            this.dayTexbox.Name = "dayTexbox";
-            this.dayTexbox.Size = new System.Drawing.Size(203, 20);
-            this.dayTexbox.TabIndex = 4;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -126,12 +112,36 @@
             this.timeSlotIdTexbox.Size = new System.Drawing.Size(203, 20);
             this.timeSlotIdTexbox.TabIndex = 2;
             // 
-            // startTimeTexBox
+            // dayComboBox
             // 
-            this.startTimeTexBox.Location = new System.Drawing.Point(129, 119);
-            this.startTimeTexBox.Name = "startTimeTexBox";
-            this.startTimeTexBox.Size = new System.Drawing.Size(203, 20);
-            this.startTimeTexBox.TabIndex = 10;
+            this.dayComboBox.FormattingEnabled = true;
+            this.dayComboBox.Items.AddRange(new object[] {
+            "M",
+            "T",
+            "W",
+            "R",
+            "F",
+            "S",
+            "U"});
+            this.dayComboBox.Location = new System.Drawing.Point(129, 74);
+            this.dayComboBox.Name = "dayComboBox";
+            this.dayComboBox.Size = new System.Drawing.Size(203, 21);
+            this.dayComboBox.TabIndex = 4;
+            // 
+            // startDateTimePicker
+            // 
+            this.startDateTimePicker.Location = new System.Drawing.Point(129, 119);
+            this.startDateTimePicker.Name = "startDateTimePicker";
+            this.startDateTimePicker.Size = new System.Drawing.Size(203, 20);
+            this.startDateTimePicker.TabIndex = 11;
+            this.startDateTimePicker.ValueChanged += new System.EventHandler(this.DateTimePicker1_ValueChanged);
+            // 
+            // endDateTimePicker
+            // 
+            this.endDateTimePicker.Location = new System.Drawing.Point(129, 162);
+            this.endDateTimePicker.Name = "endDateTimePicker";
+            this.endDateTimePicker.Size = new System.Drawing.Size(203, 20);
+            this.endDateTimePicker.TabIndex = 12;
             // 
             // TimeSlotUi
             // 
@@ -150,14 +160,14 @@
         #endregion
 
         private System.Windows.Forms.GroupBox TimeSlotGroup;
-        private System.Windows.Forms.TextBox startTimeTexBox;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox endTimeTexbox;
         private System.Windows.Forms.Button TimeSlotSaveButton;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox dayTexbox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox timeSlotIdTexbox;
+        private System.Windows.Forms.DateTimePicker startDateTimePicker;
+        private System.Windows.Forms.ComboBox dayComboBox;
+        private System.Windows.Forms.DateTimePicker endDateTimePicker;
     }
 }

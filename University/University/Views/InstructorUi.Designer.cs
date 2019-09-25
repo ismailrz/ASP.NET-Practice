@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.InstructorGroup = new System.Windows.Forms.GroupBox();
             this.departmentNameCombobox = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -38,7 +39,9 @@
             this.nameTexbox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.idTexbox = new System.Windows.Forms.TextBox();
+            this.departmentBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.InstructorGroup.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.departmentBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // InstructorGroup
@@ -61,11 +64,14 @@
             // 
             // departmentNameCombobox
             // 
+            this.departmentNameCombobox.DataSource = this.departmentBindingSource;
+            this.departmentNameCombobox.DisplayMember = "Dept_Name";
             this.departmentNameCombobox.FormattingEnabled = true;
             this.departmentNameCombobox.Location = new System.Drawing.Point(129, 119);
             this.departmentNameCombobox.Name = "departmentNameCombobox";
             this.departmentNameCombobox.Size = new System.Drawing.Size(203, 21);
             this.departmentNameCombobox.TabIndex = 3;
+            this.departmentNameCombobox.ValueMember = "Dept_Name";
             // 
             // label2
             // 
@@ -134,6 +140,10 @@
             this.idTexbox.Size = new System.Drawing.Size(203, 20);
             this.idTexbox.TabIndex = 2;
             // 
+            // departmentBindingSource
+            // 
+            this.departmentBindingSource.DataSource = typeof(University.Models.Department);
+            // 
             // InstructorUi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -142,8 +152,10 @@
             this.Controls.Add(this.InstructorGroup);
             this.Name = "InstructorUi";
             this.Text = "Instructor";
+            this.Load += new System.EventHandler(this.InstructorUi_Load);
             this.InstructorGroup.ResumeLayout(false);
             this.InstructorGroup.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.departmentBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -160,5 +172,6 @@
         private System.Windows.Forms.TextBox nameTexbox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox idTexbox;
+        private System.Windows.Forms.BindingSource departmentBindingSource;
     }
 }
